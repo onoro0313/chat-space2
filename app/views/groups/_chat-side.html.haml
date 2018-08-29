@@ -1,0 +1,25 @@
+.chat-side
+  .chat-side__header
+    %h5
+      = current_user.name
+      .font-awesome
+        = link_to new_group_path, class: "font-awesome__specific" do
+          %i{class: "fa fa-pencil-square-o"}
+        = link_to edit_user_registration_path,class: "font-awesome__specific" do
+          %i{class: "fa fa-cog"}
+  .chat-group
+    %ul.chat-group__list
+      - @groups.each do |group|
+        %li.chat-group__name
+          = link_to group_messages_path(group) do
+            = group.group_name
+          - if group.messages.present?
+            .chat-group__message
+              - if group.messages.last.image.present?
+                画像が送信されました。
+              - elsif group.messages.last.body.present?
+                = group.messages.last.body
+              - elsif group.messages.last.body.blank? && group.messages.last.image.blank?
+                まだメッセージが投稿されていません。
+
+

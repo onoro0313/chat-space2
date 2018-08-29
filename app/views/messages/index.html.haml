@@ -1,0 +1,24 @@
+.chat
+  = render "groups/chat-side"
+  .chat-main
+    .chat-header
+      .chat-header__left
+        %h3
+          = @group.group_name
+          / = current_user.groups.group_name
+        %p.chat-header__members
+          - @users.each do |user|
+            = user.name
+      .chat-header__right
+        = link_to "EDIT", edit_group_path(@group), class: "chat-header__edit"
+    .chat-body
+      %ul.chat-body__list
+        = render partial: 'message', collection: @messages
+    .chat-footer
+      = form_for [@group, @message], html: { id: 'new_message' }do |f|
+        = f.text_area :body,placeholder: "type a message", class: "chat-footer__form"
+        = f.label :image do
+          %i{class: "fa fa-picture-o file__icon"}
+          = f.file_field :image, class: "file-picture",style: "display:none"
+        = f.submit "Send", class: "chat-footer__submit"
+
