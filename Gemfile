@@ -60,6 +60,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
+
 group :production do
   gem 'unicorn'
 end
@@ -72,3 +73,4 @@ gem 'font-awesome-rails'
 gem 'devise'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'fog-aws'
